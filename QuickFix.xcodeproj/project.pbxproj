@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		AA3C363F29C1ED00004E9508 /* Issue-CoreDataHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA3C363E29C1ED00004E9508 /* Issue-CoreDataHelpers.swift */; };
+		AA3C364129C1EEDB004E9508 /* Tag-CoreDataHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA3C364029C1EEDB004E9508 /* Tag-CoreDataHelpers.swift */; };
 		AAB7D3FA29BFA945009F91E7 /* QuickFix.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAB7D3F929BFA945009F91E7 /* QuickFix.swift */; };
 		AAB7D3FC29BFA945009F91E7 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAB7D3FB29BFA945009F91E7 /* ContentView.swift */; };
 		AAB7D3FE29BFA946009F91E7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AAB7D3FD29BFA946009F91E7 /* Assets.xcassets */; };
@@ -19,6 +21,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		AA3C363E29C1ED00004E9508 /* Issue-CoreDataHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Issue-CoreDataHelpers.swift"; sourceTree = "<group>"; };
+		AA3C364029C1EEDB004E9508 /* Tag-CoreDataHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Tag-CoreDataHelpers.swift"; sourceTree = "<group>"; };
 		AAB7D3F629BFA945009F91E7 /* QuickFix.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = QuickFix.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AAB7D3F929BFA945009F91E7 /* QuickFix.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuickFix.swift; sourceTree = "<group>"; };
 		AAB7D3FB29BFA945009F91E7 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -26,7 +30,7 @@
 		AAB7D40029BFA946009F91E7 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		AAB7D40829BFAA17009F91E7 /* Main.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Main.xcdatamodel; sourceTree = "<group>"; };
 		AAB7D40A29BFAC73009F91E7 /* DataController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataController.swift; sourceTree = "<group>"; };
-		AAB7D40C29C091FA009F91E7 /* PortfolioApp.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = PortfolioApp.entitlements; sourceTree = "<group>"; };
+		AAB7D40C29C091FA009F91E7 /* QuickFix.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = QuickFix.entitlements; sourceTree = "<group>"; };
 		AAB7D40D29C0920C009F91E7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		AAB7D40E29C0F096009F91E7 /* SidebarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SidebarView.swift; sourceTree = "<group>"; };
 		AAB7D41029C0F09C009F91E7 /* DetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailView.swift; sourceTree = "<group>"; };
@@ -64,7 +68,7 @@
 			isa = PBXGroup;
 			children = (
 				AAB7D40D29C0920C009F91E7 /* Info.plist */,
-				AAB7D40C29C091FA009F91E7 /* PortfolioApp.entitlements */,
+				AAB7D40C29C091FA009F91E7 /* QuickFix.entitlements */,
 				AAB7D3F929BFA945009F91E7 /* QuickFix.swift */,
 				AAB7D41529C0F2E2009F91E7 /* Filter.swift */,
 				AAB7D41229C0F0BC009F91E7 /* Models */,
@@ -86,6 +90,8 @@
 		AAB7D41229C0F0BC009F91E7 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				AA3C363E29C1ED00004E9508 /* Issue-CoreDataHelpers.swift */,
+				AA3C364029C1EEDB004E9508 /* Tag-CoreDataHelpers.swift */,
 				AAB7D40729BFAA17009F91E7 /* Main.xcdatamodeld */,
 				AAB7D40A29BFAC73009F91E7 /* DataController.swift */,
 			);
@@ -173,7 +179,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				AAB7D41629C0F2E2009F91E7 /* Filter.swift in Sources */,
+				AA3C364129C1EEDB004E9508 /* Tag-CoreDataHelpers.swift in Sources */,
 				AAB7D40929BFAA17009F91E7 /* Main.xcdatamodeld in Sources */,
+				AA3C363F29C1ED00004E9508 /* Issue-CoreDataHelpers.swift in Sources */,
 				AAB7D41129C0F09C009F91E7 /* DetailView.swift in Sources */,
 				AAB7D40B29BFAC73009F91E7 /* DataController.swift in Sources */,
 				AAB7D40F29C0F096009F91E7 /* SidebarView.swift in Sources */,
@@ -304,15 +312,15 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_ENTITLEMENTS = PortfolioApp/PortfolioApp.entitlements;
+				CODE_SIGN_ENTITLEMENTS = QuickFix/QuickFix.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"PortfolioApp/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "\"QuickFix/Preview Content\"";
 				DEVELOPMENT_TEAM = N6RF4M6NH8;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = PortfolioApp/Info.plist;
+				INFOPLIST_FILE = QuickFix/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -323,7 +331,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = ChristianLavelle.PortfolioApp;
+				PRODUCT_BUNDLE_IDENTIFIER = ChristianLavelle.QuickFix;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -337,15 +345,15 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_ENTITLEMENTS = PortfolioApp/PortfolioApp.entitlements;
+				CODE_SIGN_ENTITLEMENTS = QuickFix/QuickFix.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"PortfolioApp/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "\"QuickFix/Preview Content\"";
 				DEVELOPMENT_TEAM = N6RF4M6NH8;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = PortfolioApp/Info.plist;
+				INFOPLIST_FILE = QuickFix/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -356,7 +364,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = ChristianLavelle.PortfolioApp;
+				PRODUCT_BUNDLE_IDENTIFIER = ChristianLavelle.QuickFix;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
