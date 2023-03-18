@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		AA3C363F29C1ED00004E9508 /* Issue-CoreDataHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA3C363E29C1ED00004E9508 /* Issue-CoreDataHelpers.swift */; };
 		AA3C364129C1EEDB004E9508 /* Tag-CoreDataHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA3C364029C1EEDB004E9508 /* Tag-CoreDataHelpers.swift */; };
+		AA3C364329C5224A004E9508 /* IssueRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA3C364229C5224A004E9508 /* IssueRow.swift */; };
 		AAB7D3FA29BFA945009F91E7 /* QuickFix.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAB7D3F929BFA945009F91E7 /* QuickFix.swift */; };
 		AAB7D3FC29BFA945009F91E7 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAB7D3FB29BFA945009F91E7 /* ContentView.swift */; };
 		AAB7D3FE29BFA946009F91E7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AAB7D3FD29BFA946009F91E7 /* Assets.xcassets */; };
@@ -23,6 +24,7 @@
 /* Begin PBXFileReference section */
 		AA3C363E29C1ED00004E9508 /* Issue-CoreDataHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Issue-CoreDataHelpers.swift"; sourceTree = "<group>"; };
 		AA3C364029C1EEDB004E9508 /* Tag-CoreDataHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Tag-CoreDataHelpers.swift"; sourceTree = "<group>"; };
+		AA3C364229C5224A004E9508 /* IssueRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssueRow.swift; sourceTree = "<group>"; };
 		AAB7D3F629BFA945009F91E7 /* QuickFix.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = QuickFix.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AAB7D3F929BFA945009F91E7 /* QuickFix.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuickFix.swift; sourceTree = "<group>"; };
 		AAB7D3FB29BFA945009F91E7 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -104,6 +106,7 @@
 				AAB7D40E29C0F096009F91E7 /* SidebarView.swift */,
 				AAB7D3FB29BFA945009F91E7 /* ContentView.swift */,
 				AAB7D41029C0F09C009F91E7 /* DetailView.swift */,
+				AA3C364229C5224A004E9508 /* IssueRow.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -186,6 +189,7 @@
 				AAB7D40B29BFAC73009F91E7 /* DataController.swift in Sources */,
 				AAB7D40F29C0F096009F91E7 /* SidebarView.swift in Sources */,
 				AAB7D3FC29BFA945009F91E7 /* ContentView.swift in Sources */,
+				AA3C364329C5224A004E9508 /* IssueRow.swift in Sources */,
 				AAB7D3FA29BFA945009F91E7 /* QuickFix.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

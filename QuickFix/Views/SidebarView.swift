@@ -21,7 +21,7 @@ struct SidebarView: View {
     
     var body: some View {
         List(selection: $dataController.selectedFilter) {
-            Section("SmartFilters") {
+            Section("Smart Filters") {
                 ForEach(smartFilters) { filter in
                     NavigationLink(value: filter) {
                         Label(filter.name, systemImage: filter.icon)
@@ -36,8 +36,10 @@ struct SidebarView: View {
                             .badge(filter.tag?.tagActiveIssues.count ?? 0)
                     }
                 }
+                .onDelete(perform: delete)
             }
         }
+        .navigationTitle("QuickFix")
         .toolbar {
             Button {
                 dataController.deleteAll()
@@ -45,6 +47,13 @@ struct SidebarView: View {
             } label: {
                 Label("Add Samples", systemImage: "flame")
             }
+        }
+    }
+    
+    func delete(_ offsets: IndexSet) {
+        for offset in offsets {
+            let item = tags[offset]
+            dataController.delete(item)
         }
     }
 }
