@@ -72,7 +72,6 @@
 				AAB7D40D29C0920C009F91E7 /* Info.plist */,
 				AAB7D40C29C091FA009F91E7 /* QuickFix.entitlements */,
 				AAB7D3F929BFA945009F91E7 /* QuickFix.swift */,
-				AAB7D41529C0F2E2009F91E7 /* Filter.swift */,
 				AAB7D41229C0F0BC009F91E7 /* Models */,
 				AAB7D41429C0F0C5009F91E7 /* Views */,
 				AAB7D3FD29BFA946009F91E7 /* Assets.xcassets */,
@@ -92,10 +91,11 @@
 		AAB7D41229C0F0BC009F91E7 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				AA3C363E29C1ED00004E9508 /* Issue-CoreDataHelpers.swift */,
-				AA3C364029C1EEDB004E9508 /* Tag-CoreDataHelpers.swift */,
 				AAB7D40729BFAA17009F91E7 /* Main.xcdatamodeld */,
 				AAB7D40A29BFAC73009F91E7 /* DataController.swift */,
+				AAB7D41529C0F2E2009F91E7 /* Filter.swift */,
+				AA3C363E29C1ED00004E9508 /* Issue-CoreDataHelpers.swift */,
+				AA3C364029C1EEDB004E9508 /* Tag-CoreDataHelpers.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
