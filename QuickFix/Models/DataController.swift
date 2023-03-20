@@ -11,8 +11,10 @@ class DataController: ObservableObject {
     // The container that holds the Core Data stack
     let container: NSPersistentCloudKitContainer
     
-    // Published property that tracks the currently selected filter
+    // Announces changes for the currently selected filter
     @Published var selectedFilter: Filter? = Filter.all
+    // Announces changes for the selected issue in ContentView
+    @Published var selectedIssue: Issue?
     
     // A static instance of the DataController that can be used for previews
     static var preview: DataController = {
