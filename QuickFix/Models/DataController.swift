@@ -7,6 +7,16 @@
 
 import CoreData
 
+enum SortType: String {
+    case dateCreated = "creationDate"
+    case dateModified = "modificationDate"
+}
+
+enum Status {
+    case all, open, closed
+}
+
+
 class DataController: ObservableObject {
     // The container that holds the Core Data stack
     let container: NSPersistentCloudKitContainer
@@ -17,8 +27,15 @@ class DataController: ObservableObject {
     @Published var selectedIssue: Issue?
     // Announces changes for user's search query
     @Published var filterText = ""
-    
+    // Initializes an empty array for filter tokens to be added
     @Published var filterTokens = [Tag]()
+    
+    // Filter options
+    @Published var filterEnabled = false
+    @Published var filterPriority = -1
+    @Published var filterStatus = Status.all
+    @Published var sortType = SortType.dateCreated
+    @Published var sortNewestFirst = true
     
     private var saveTask: Task<Void, Error>?
     
@@ -209,9 +226,31 @@ class DataController: ObservableObject {
 
         }
         
+        // If filtering
+        if filterEnabled {
+            // If a priorty is the filter
+            if filterPriority >= 0 {
+                // Create a predicate to filter tasks by priority
+                let priorityFilter = NSPredicate(format: "priority = %d", filterPriority)
+                // Append the priority predicate to the predicates array
+                predicates.append(priorityFilter)
+            }
+            
+            // If a filterStatus is set
+            if filterStatus != .all {
+                // Check if filter is looking for closed tasks (true if closed)
+                let lookForClosed = filterStatus == .closed
+                // Create a predicate to filter tasks by status
+                let statusFilter = NSPredicate(format: "completed = %@", NSNumber(value: lookForClosed))
+                // Append the status predicate to the predicates array
+                predicates.append(statusFilter)
+            }
+        }
+        
         // Fetch all issues that match the predicates from the view context
         let request = Issue.fetchRequest()
         request.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: predicates)
+        request.sortDescriptors = [NSSortDescriptor(key: sortType.rawValue, ascending: sortNewestFirst)]
         let allIssues = (try? container.viewContext.fetch(request)) ?? []
         
         // Return the sorted array of issues

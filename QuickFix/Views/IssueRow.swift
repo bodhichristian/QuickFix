@@ -36,9 +36,9 @@ struct IssueRow: View {
                     
                     if issue.completed {
                         HStack(spacing: 2) {
-                            Text("FIXED")
+                            Text("CLOSED")
                                 .font(.body.smallCaps())
-                            Image(systemName: "checkmark.seal.fill")
+                            Image(systemName: "checkmark.circle")
                         }
                         .foregroundStyle(.green)
                     }
