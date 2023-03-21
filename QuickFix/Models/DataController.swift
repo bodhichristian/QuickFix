@@ -16,6 +16,8 @@ class DataController: ObservableObject {
     // Announces changes for the selected issue in ContentView
     @Published var selectedIssue: Issue?
     
+    private var saveTask: Task<Void, Error>?
+    
     // A static instance of the DataController that can be used for previews
     static var preview: DataController = {
         let dataController = DataController(inMemory: true)
@@ -82,6 +84,18 @@ class DataController: ObservableObject {
         // Only save if there are changes in the managed object context
         if container.viewContext.hasChanges {
             try? container.viewContext.save()
+        }
+    }
+    
+    func queueSave() {
+        // Cancel current task if it exists
+        saveTask?.cancel()
+        // MainActor Task: Wait three seconds, then save
+        saveTask = Task { @MainActor in
+            print("Queueing changes...")
+            try await Task.sleep(for: .seconds(3))
+            save()
+            print("Changes saved.")
         }
     }
     

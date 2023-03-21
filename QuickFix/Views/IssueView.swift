@@ -31,8 +31,6 @@ struct IssueView: View {
                     Text("High").tag(Int16(2))
                 }
                 
-                
-                
                 Menu {
                     // Show selected tags first
                     ForEach(issue.issueTags) { tag in
@@ -57,8 +55,8 @@ struct IssueView: View {
                             }
                         }
                     }
-                    // Menu label
                 } label: {
+                    // Menu label
                     Text(issue.issueTagsList)
                         .multilineTextAlignment(.leading)
                         .frame(maxWidth: .infinity, alignment: .leading)
@@ -77,6 +75,11 @@ struct IssueView: View {
             }
         }
         .disabled(issue.isDeleted)
+        // When issue property changes are published
+        .onReceive(issue.objectWillChange) { _ in
+            // Queue changes for saving
+            dataController.queueSave()
+        }
     }
 }
     struct IssueView_Previews: PreviewProvider {
