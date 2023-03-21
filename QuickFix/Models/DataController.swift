@@ -126,4 +126,16 @@ class DataController: ObservableObject {
         // Save changes
         save()
     }
+    
+    func missingTags(from issue: Issue) -> [Tag] {
+        let request = Tag.fetchRequest()
+        // Fetch all tags
+        let allTags = (try? container.viewContext.fetch(request)) ?? []
+        // Create a set of fetched tags
+        let allTagsSet = Set(allTags)
+        // Evaluate which tags are missing
+        let difference = allTagsSet.symmetricDifference(issue.issueTags)
+        // Return missing tags
+        return difference.sorted()
+    }
 }
