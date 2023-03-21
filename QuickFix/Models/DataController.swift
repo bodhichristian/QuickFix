@@ -15,6 +15,10 @@ class DataController: ObservableObject {
     @Published var selectedFilter: Filter? = Filter.all
     // Announces changes for the selected issue in ContentView
     @Published var selectedIssue: Issue?
+    // Announces changes for user's search query
+    @Published var filterText = ""
+    
+    @Published var filterTokens = [Tag]()
     
     private var saveTask: Task<Void, Error>?
     
@@ -24,6 +28,21 @@ class DataController: ObservableObject {
         dataController.createSampleData()
         return dataController
     }()
+    
+    var suggestedFilterTokens: [Tag] {
+        guard filterText.starts(with: "#") else {
+            return []
+        }
+        
+        let trimmedFilterText = String(filterText.dropFirst()).trimmingCharacters(in: .whitespaces)
+        let request = Tag.fetchRequest()
+        
+        if trimmedFilterText.isEmpty == false {
+            request.predicate = NSPredicate(format: "name CONTAINS[c] %@", trimmedFilterText)
+        }
+        
+        return (try? container.viewContext.fetch(request).sorted()) ?? []
+    }
     
     // Initializes the Core Data stack
     init(inMemory: Bool = false ) {
@@ -149,7 +168,53 @@ class DataController: ObservableObject {
         let allTagsSet = Set(allTags)
         // Evaluate which tags are missing
         let difference = allTagsSet.symmetricDifference(issue.issueTags)
+        
         // Return missing tags
         return difference.sorted()
+    }
+    
+    // Return an array of Issues, sorted by tags if present
+    func issuesForSelectedFilter() -> [Issue] {
+        let filter = selectedFilter ?? .all // The selected filter in the data controller
+        var predicates = [NSPredicate]() // An array of predicates for use in the fetch request
+        
+        // If the filter specifies a tag, create a predicate to fetch all issues associated with that tag
+        if let tag = filter.tag {
+            let tagPredicate = NSPredicate(format: "tags CONTAINS %@", tag)
+            predicates.append(tagPredicate)
+        } else {
+            // If the filter doesn't specify a tag, create a predicate to fetch issues that have been modified since the minimum modification date filter
+            let datePredicate = NSPredicate(format: "modificationDate > %@", filter.minModificationDate as NSDate)
+            predicates.append(datePredicate)
+        }
+        
+        let trimmedFilterText = filterText.trimmingCharacters(in: .whitespaces)
+        
+        if trimmedFilterText.isEmpty == false {
+            // Create a case-insensitive title predicate
+            let titlePredicate = NSPredicate(format: "title CONTAINS[c] %@", trimmedFilterText)
+            // Create a case-insensitive content predicate
+            let contentPredicate = NSPredicate(format: "content CONTAINS[c] %@", trimmedFilterText)
+            // Create a compound OR predicate with titlePredicate and contentPredicate
+            let combinedPredicate = NSCompoundPredicate(orPredicateWithSubpredicates: [titlePredicate, contentPredicate])
+            predicates.append(combinedPredicate)
+        }
+        
+        // If filter tokens exist, append selected tokens to predicate
+        if filterTokens.isEmpty == false {
+            for filterToken in filterTokens {
+                let tokenPredicate = NSPredicate(format: "tags CONTAINS %@", filterToken)
+                predicates.append(tokenPredicate)
+            }
+
+        }
+        
+        // Fetch all issues that match the predicates from the view context
+        let request = Issue.fetchRequest()
+        request.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: predicates)
+        let allIssues = (try? container.viewContext.fetch(request)) ?? []
+        
+        // Return the sorted array of issues
+        return allIssues.sorted()
     }
 }
