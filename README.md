@@ -4,4 +4,4 @@ QuickFix is a multi-platform app that replicates functionality from Apple's Feed
 
 It uses Core Data for data persistence, and CloudKit for synchronization across devices.
 
-![QuickFix Showcase Images 001](https://user-images.githubusercontent.com/110639779/226696429-edaeeaa7-34cd-4f89-a08d-46b6e2f2a707.jpeg)
+![QuickFix Showcase 001](https://user-images.githubusercontent.com/110639779/226912997-a153afb2-a708-42b9-86f7-ff6d123e2075.jpeg)
