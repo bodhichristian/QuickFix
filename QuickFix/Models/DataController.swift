@@ -256,4 +256,31 @@ class DataController: ObservableObject {
         // Return the sorted array of issues
         return allIssues.sorted()
     }
+    
+    func newIssue() {
+        // Create a new issue object from the view context
+        let issue = Issue(context: container.viewContext)
+        
+        // Assign initial values
+        issue.title = "New Issue"
+        issue.creationDate = .now
+        issue.priority = 0
+        
+        // If user is viewing a partcitular tag
+        if let tag = selectedFilter?.tag {
+            // Add that tag to the issue object
+            issue.addToTags(tag)
+        }
+        
+        save()
+        // Navigate to IssueView to edit newly created issue
+        selectedIssue = issue
+    }
+    
+    func newTag() {
+        let tag = Tag(context: container.viewContext)
+        tag.id = UUID()
+        tag.name = "New Tag"
+        save()
+    }
 }

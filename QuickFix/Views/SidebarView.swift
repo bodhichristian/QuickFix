@@ -13,6 +13,10 @@ struct SidebarView: View {
     
     @FetchRequest(sortDescriptors: [SortDescriptor(\.name)]) var tags: FetchedResults<Tag>
     
+    @State private var tagToRename: Tag?
+    @State private var renamingTag = false
+    @State private var tagName = ""
+    
     var tagFilters: [Filter] {
         tags.map { tag in
             Filter(id: tag.tagID, name: tag.tagName, icon: "tag", tag: tag)
@@ -34,6 +38,13 @@ struct SidebarView: View {
                     NavigationLink(value: filter) {
                         Label(filter.name, systemImage: filter.icon)
                             .badge(filter.tag?.tagActiveIssues.count ?? 0)
+                            .contextMenu {
+                                Button {
+                                    rename(filter)
+                                } label: {
+                                    Label("Rename", systemImage: "pencil")
+                                }
+                            }
                     }
                 }
                 .onDelete(perform: delete)
@@ -41,20 +52,44 @@ struct SidebarView: View {
         }
         .navigationTitle("QuickFix")
         .toolbar {
-            Button {
-                dataController.deleteAll()
-                dataController.createSampleData()
-            } label: {
-                Label("Add Samples", systemImage: "flame")
+            Button(action: dataController.newTag) {
+                Label("Add tag", systemImage: "plus")
             }
+
+// Only visibile if running in Xcode.
+//            #if DEBUG
+//            Button {
+//                dataController.deleteAll()
+//                dataController.createSampleData()
+//            } label: {
+//                Label("Add Samples", systemImage: "dice")
+//            }
+//            #endif
+        }
+        .alert("Rename Tag", isPresented: $renamingTag) {
+            Button("OK", action: completeRename)
+            Button("Cancel", role: .cancel) { }
+            TextField("New name", text: $tagName)
         }
     }
     
+    // Delete tags
     func delete(_ offsets: IndexSet) {
         for offset in offsets {
             let item = tags[offset]
             dataController.delete(item)
         }
+    }
+    // Rename a tag in a Filter
+    func rename(_ filter: Filter) {
+        tagToRename = filter.tag
+        tagName = filter.name
+        renamingTag = true
+    }
+    // Update tag name property and save changes to datacontroller
+    func completeRename() {
+        tagToRename?.name = tagName
+        dataController.save()
     }
 }
 
