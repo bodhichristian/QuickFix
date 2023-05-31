@@ -46,13 +46,19 @@ struct SidebarView: View {
                                 } label: {
                                     Label("Rename", systemImage: "pencil")
                                 }
+                                
+                                Button(role: .destructive) {
+                                    delete(filter)
+                                } label: {
+                                    Label("Delete", systemImage: "trash")
+                                }
                             }
                     }
                 }
                 .onDelete(perform: delete)
             }
         }
-        .navigationTitle("QuickFix")
+        .navigationTitle("Filters")
         .toolbar {
             Button(action: dataController.newTag) {
                 Label("Add tag", systemImage: "plus")
@@ -81,13 +87,20 @@ struct SidebarView: View {
         .sheet(isPresented: $showingAwards, content: AwardsView.init)
     }
     
-    // Delete tags
+    // Delete tags (for swipe to delete)
     func delete(_ offsets: IndexSet) {
         for offset in offsets {
             let item = tags[offset]
             dataController.delete(item)
         }
     }
+    
+    func delete(_ filter: Filter) {
+        guard let tag = filter.tag else { return }
+        dataController.delete(tag)
+        dataController.save()
+    }
+    
     // Rename a tag in a Filter
     func rename(_ filter: Filter) {
         tagToRename = filter.tag

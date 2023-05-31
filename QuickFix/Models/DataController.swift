@@ -117,6 +117,7 @@ class DataController: ObservableObject {
     
     // Saves changes to the managed object context
     func save() {
+        saveTask?.cancel() // Cancel any changes that are queued to be saved
         // Only save if there are changes in the managed object context
         if container.viewContext.hasChanges {
             try? container.viewContext.save()
