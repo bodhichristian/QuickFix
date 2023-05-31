@@ -253,8 +253,8 @@ class DataController: ObservableObject {
         request.sortDescriptors = [NSSortDescriptor(key: sortType.rawValue, ascending: sortNewestFirst)]
         let allIssues = (try? container.viewContext.fetch(request)) ?? []
         
-        // Return the sorted array of issues
-        return allIssues.sorted()
+        // Return the user-sorted array of issues
+        return allIssues
     }
     
     func newTag() {
