@@ -14,6 +14,10 @@ struct Filter: Identifiable, Hashable {
     var minModificationDate = Date.distantPast
     var tag: Tag?
     
+    var activeIssuesCount: Int {
+        filter.tag?.tagActiveIssues.count ?? 0
+    }
+    
     static var all = Filter(id: UUID(), name: "All Issues", icon: "tray")
     // minModificationDate is set to 7 days prior to now
     static var recent = Filter(id: UUID(), name: "Recent Issues", icon: "clock", minModificationDate: .now.addingTimeInterval(86400 * -7))
